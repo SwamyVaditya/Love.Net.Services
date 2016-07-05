@@ -1,0 +1,30 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "This library contains some common services for .NET Core.",
+  "authors": [ "rigofunc", "rigofunc@outlook.com", "lotosbin", "lotosbin@gmail.com" ],
+  "packOptions": {
+    "projectUrl": "https://github.com/lovedotnet/Love.Net.Services",
+    "licenseUrl": "",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/lovedotnet/Love.Net.Services.git"
+    },
+    "tags": [ "Services", "Infrastructure" ]
+  },
+  "buildOptions": {
+    "optimize": true,
+    "xmlDoc": true
+  },
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
+    "Love.Net.Http": "1.0.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+    }
+  }
+}
