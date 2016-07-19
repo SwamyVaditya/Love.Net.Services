@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace Love.Net.Services {
     /// <summary>
-    /// Represents the default implementation of <see cref="ISmsSender"/> and <see cref="IEmailSender"/> interfaces by invoking Api delegate it's job.
+    /// Represents the default implementation of <see cref="ISmsSender"/>, <see cref="IEmailSender"/> and <see cref="IAppPush"/> interfaces by invoking Api delegate it's job.
     /// </summary>
     public class ApiInvoker : IEmailSender, ISmsSender, IAppPush {
         private readonly ApiInvokerOptions _options;
@@ -33,6 +33,10 @@ namespace Love.Net.Services {
         /// <returns>A <see cref="Task{TResult}" /> represents the send operation.</returns>
         public async virtual Task SendEmailAsync(string email, string subject, string message) {
             using (var http = new HttpClient()) {
+                var headers = _options.HeaderRetriever(_options.SmsApiUrl);
+                foreach (var item in headers) {
+                    http.DefaultRequestHeaders.Add(item.Item1, item.Item2);
+                }
                 var value = new { Email = email, Subject = subject, Message = message };
                 var response = await http.PostAsJsonAsync(_options.SmsApiUrl, value);
                 if (!response.IsSuccessStatusCode) {
@@ -49,6 +53,10 @@ namespace Love.Net.Services {
         /// <returns>A <see cref="Task{TResult}"/> represents the send operation.</returns>
         public async virtual Task<SendSmsResult> SendSmsAsync(string phoneNumber, string message) {
             using (var http = new HttpClient()) {
+                var headers = _options.HeaderRetriever(_options.SmsApiUrl);
+                foreach (var item in headers) {
+                    http.DefaultRequestHeaders.Add(item.Item1, item.Item2);
+                }
                 var value = new { PhoneNumber = phoneNumber, Message = message };
                 var response = await http.PostAsJsonAsync(_options.SmsApiUrl, value);
                 if (response.IsSuccessStatusCode) {
@@ -70,7 +78,11 @@ namespace Love.Net.Services {
         /// <returns>A <see cref="Task{TResult}"/> represents the send operation.</returns>
         public async virtual Task<SendSmsResult> SendSmsAsync(string template, string phoneNumber, params Tuple<string, string>[] parameters) {
             using (var http = new HttpClient()) {
-                var value = new { Template = template, PhoneNumber = phoneNumber, Parameters = parameters.ToDictionary(_options) };
+                var headers = _options.HeaderRetriever(_options.SmsApiUrl);
+                foreach (var item in headers) {
+                    http.DefaultRequestHeaders.Add(item.Item1, item.Item2);
+                }
+                var value = new { Template = template, PhoneNumber = phoneNumber, Parameters = parameters.ToDictionary() };
                 var response = await http.PostAsJsonAsync(_options.SmsApiUrl, value);
                 if (response.IsSuccessStatusCode) {
                     var result = await response.Content.ReadAsAsync<SendSmsResult>();
@@ -92,6 +104,10 @@ namespace Love.Net.Services {
         /// <returns>A <see cref="Task"/> represents the push operation.</returns>
         public async Task PushMessageToListAsync<TMessage>(string appId, TMessage message, params Target[] targets) where TMessage : class {
             using (var http = new HttpClient()) {
+                var headers = _options.HeaderRetriever(_options.SmsApiUrl);
+                foreach (var item in headers) {
+                    http.DefaultRequestHeaders.Add(item.Item1, item.Item2);
+                }
                 var response = await http.PostAsync(_options.AppPushApiUrl, GetHttpContent(appId, message, targets));
                 if (!response.IsSuccessStatusCode) {
                     throw new HttpRequestException(await response.Content.ReadAsStringAsync());
@@ -108,6 +124,10 @@ namespace Love.Net.Services {
         /// <returns>A <see cref="Task"/> represents the push operation.</returns>
         public async Task PushMessageToAppAsync<TMessage>(string appId, TMessage message) where TMessage : class {
             using (var http = new HttpClient()) {
+                var headers = _options.HeaderRetriever(_options.SmsApiUrl);
+                foreach (var item in headers) {
+                    http.DefaultRequestHeaders.Add(item.Item1, item.Item2);
+                }
                 var response = await http.PostAsync(_options.AppPushApiUrl, GetHttpContent(appId, message));
                 if (!response.IsSuccessStatusCode) {
                     throw new HttpRequestException(await response.Content.ReadAsStringAsync());
@@ -145,7 +165,7 @@ namespace Love.Net.Services {
     }
 
     internal static class TupleToDictionaryExtensions {
-        public static Dictionary<string, string> ToDictionary(this Tuple<string, string>[] tuples, ApiInvokerOptions options) {
+        public static Dictionary<string, string> ToDictionary(this Tuple<string, string>[] tuples) {
             var parameters = new Dictionary<string, string>();
             foreach (var item in tuples) {
                 parameters[item.Item1] = item.Item2;

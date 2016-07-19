@@ -1,5 +1,8 @@
 ﻿// Copyright (c) rigofunc and lotosbin. All rights reserved.
 
+using System;
+using System.Collections.Generic;
+
 namespace Love.Net.Services {
     /// <summary>
     /// Represents all the options you can user to configure the service.
@@ -20,5 +23,10 @@ namespace Love.Net.Services {
         /// </summary>
         /// <value>The App push API URL.</value>
         public string AppPushApiUrl { get; set; }
+        /// <summary>
+        /// Gets or sets the header retriever.
+        /// </summary>
+        /// <value>The header retriever.</value>
+        public Func<string, IEnumerable<Tuple<string, string>>> HeaderRetriever { get; set; }
     }
 }

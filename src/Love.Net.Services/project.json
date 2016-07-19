@@ -1,6 +1,6 @@
 ﻿{
   "version": "1.0.0-*",
-  "description": "This library contains some common services for .NET Core.",
+  "description": "This library contains some Asp.Net Core common services abstraction, such as SMS sender, Email sender and App message push and so on. The ApiInvoker as the default implementation by invoking RESTfull API.",
   "authors": [ "rigofunc", "rigofunc@outlook.com", "lotosbin", "lotosbin@gmail.com" ],
   "packOptions": {
     "projectUrl": "https://github.com/lovedotnet/Love.Net.Services",
@@ -9,11 +9,15 @@
       "type": "git",
       "url": "https://github.com/lovedotnet/Love.Net.Services.git"
     },
-    "tags": [ "Services", "Infrastructure" ]
+    "tags": [ "SMS", "Email", "AppPush", "push", "aspnetcore" ]
   },
   "buildOptions": {
     "optimize": true,
-    "xmlDoc": true
+    "xmlDoc": true,
+    "nowarn": [
+      "CS1591"
+    ],
+    "warningsAsErrors": true
   },
 
   "dependencies": {

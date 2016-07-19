@@ -12,6 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Love.Net.Services", "src\Love.Net.Services\Love.Net.Services.xproj", "{CDA429B1-5BAA-4B59-9A96-7EE8A3D0CBFE}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Host", "src\Host\Host.xproj", "{3309194C-7CAA-4C72-A5CA-3DBA278AC661}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A4CECFB8-BC3C-4EAD-8C51-D6F5FE302B9D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Love.Net.Services.Test", "test\Love.Net.Services.Test\Love.Net.Services.Test.xproj", "{0E614E9B-BD91-429B-BC15-323F1535DE50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +28,21 @@ Global
 		{CDA429B1-5BAA-4B59-9A96-7EE8A3D0CBFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDA429B1-5BAA-4B59-9A96-7EE8A3D0CBFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDA429B1-5BAA-4B59-9A96-7EE8A3D0CBFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3309194C-7CAA-4C72-A5CA-3DBA278AC661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3309194C-7CAA-4C72-A5CA-3DBA278AC661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3309194C-7CAA-4C72-A5CA-3DBA278AC661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3309194C-7CAA-4C72-A5CA-3DBA278AC661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E614E9B-BD91-429B-BC15-323F1535DE50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E614E9B-BD91-429B-BC15-323F1535DE50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E614E9B-BD91-429B-BC15-323F1535DE50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E614E9B-BD91-429B-BC15-323F1535DE50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CDA429B1-5BAA-4B59-9A96-7EE8A3D0CBFE} = {2155B35F-44DE-4DF9-917A-5C26590766B0}
+		{3309194C-7CAA-4C72-A5CA-3DBA278AC661} = {2155B35F-44DE-4DF9-917A-5C26590766B0}
+		{0E614E9B-BD91-429B-BC15-323F1535DE50} = {A4CECFB8-BC3C-4EAD-8C51-D6F5FE302B9D}
 	EndGlobalSection
 EndGlobal
