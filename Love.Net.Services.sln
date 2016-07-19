@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4A098F6F-13FC-4145-94BF-457813A8AE42}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Love.Net.Services", "src\Love.Net.Services\Love.Net.Services.xproj", "{CDA429B1-5BAA-4B59-9A96-7EE8A3D0CBFE}"
