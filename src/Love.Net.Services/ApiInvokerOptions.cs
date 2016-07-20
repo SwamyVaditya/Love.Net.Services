@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Love.Net.Services {
     /// <summary>
@@ -27,6 +28,6 @@ namespace Love.Net.Services {
         /// Gets or sets the header retriever.
         /// </summary>
         /// <value>The header retriever.</value>
-        public Func<string, IEnumerable<Tuple<string, string>>> HeaderRetriever { get; set; }
+        public Func<string, IEnumerable<Tuple<string, string>>> HeaderRetriever { get; set; } = (api) => Enumerable.Empty<Tuple<string, string>>();
     }
 }
