@@ -48,7 +48,7 @@ namespace Love.Net.Services {
         Task PushMessageToListAsync<TMessage>(string appId, TMessage message, params Target[] targets) where TMessage : class;
 
         /// <summary>
-        /// Pushes the message to application asynchronous.
+        /// Pushes the message to App asynchronous.
         /// </summary>
         /// <typeparam name="TMessage">The type of the message</typeparam>
         /// <param name="appId">The App identifier.</param>
