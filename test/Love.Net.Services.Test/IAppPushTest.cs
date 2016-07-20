@@ -7,6 +7,11 @@ using Xunit;
 using Host;
 
 namespace Love.Net.Services.Test {
+    public class User {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
+
     public class IAppPushTest {
         private const string _appId = "CEKPXdNm3o7PvtKyQ19uL5";
         private readonly TestServer _server;
@@ -39,6 +44,20 @@ namespace Love.Net.Services.Test {
         [Fact]
         public async Task Push_Message_To_List_Invalide_List_Test() {
             await _appPush.PushMessageToListAsync(_appId, "{ \"UserName\": \"rigofunc\"}", new Target());
+        }
+
+        [Fact]
+        public async Task Push_Generic_AppMessage_To_List_Test() {
+            var message = new AppMessage<User> {
+                Title = "xUnit test",
+                Content = new User {
+                    UserName = "rigofunc",
+                    Password = "P@ssword"
+                },
+                Kind = "1"
+            };
+
+            await _appPush.PushMessageToListAsync(_appId, message, Target.FromAlias("rigofunc"));
         }
     }
 }

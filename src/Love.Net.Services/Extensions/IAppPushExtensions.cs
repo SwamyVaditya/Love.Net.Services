@@ -13,6 +13,7 @@ namespace Love.Net.Services {
         /// </summary>
         public AppMessage() {
             Id = Guid.NewGuid().ToString();
+            Time = DateTime.Now;
         }
         /// <summary>
         /// Gets or sets the identifier.
