@@ -2,6 +2,7 @@
 using System.IO;
 using Love.Net.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Host.Controllers {
     [Route("api/[controller]")]
@@ -13,6 +14,9 @@ namespace Host.Controllers {
                 var appId = reader.ReadString();
                 // data
                 var data = reader.ReadString();
+
+                var msg = JsonConvert.DeserializeObject<AppMessage>(data);
+
                 // targets
                 var count = reader.ReadInt32();
                 if (count > 0) {
