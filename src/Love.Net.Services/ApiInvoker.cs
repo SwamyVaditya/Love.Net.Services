@@ -148,7 +148,9 @@ namespace Love.Net.Services {
                         writer.Write(message.ToString());
                     }
                     else {
-                        var json = JsonConvert.SerializeObject(message);
+                        var json = JsonConvert.SerializeObject(message, new JsonSerializerSettings {
+                            DateFormatString = "yyyy-MM-dd HH:mm:ss"
+                        });
                         writer.Write(json);
                     }
 
