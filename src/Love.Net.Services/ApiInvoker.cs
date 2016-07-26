@@ -33,12 +33,12 @@ namespace Love.Net.Services {
         /// <returns>A <see cref="Task{TResult}" /> represents the send operation.</returns>
         public async virtual Task SendEmailAsync(string email, string subject, string message) {
             using (var http = new HttpClient()) {
-                var headers = _options.HeaderRetriever(_options.SmsApiUrl);
+                var headers = _options.HeaderRetriever(_options.EmailApiUrl);
                 foreach (var item in headers) {
                     http.DefaultRequestHeaders.Add(item.Item1, item.Item2);
                 }
                 var value = new { Email = email, Subject = subject, Message = message };
-                var response = await http.PostAsJsonAsync(_options.SmsApiUrl, value);
+                var response = await http.PostAsJsonAsync(_options.EmailApiUrl, value);
                 if (!response.IsSuccessStatusCode) {
                     throw new HttpRequestException(await response.Content.ReadAsStringAsync());
                 }
@@ -104,7 +104,7 @@ namespace Love.Net.Services {
         /// <returns>A <see cref="Task"/> represents the push operation.</returns>
         public async Task PushMessageToListAsync<TMessage>(string appId, TMessage message, params Target[] targets) where TMessage : class {
             using (var http = new HttpClient()) {
-                var headers = _options.HeaderRetriever(_options.SmsApiUrl);
+                var headers = _options.HeaderRetriever(_options.AppPushApiUrl);
                 foreach (var item in headers) {
                     http.DefaultRequestHeaders.Add(item.Item1, item.Item2);
                 }
@@ -124,7 +124,7 @@ namespace Love.Net.Services {
         /// <returns>A <see cref="Task"/> represents the push operation.</returns>
         public async Task PushMessageToAppAsync<TMessage>(string appId, TMessage message) where TMessage : class {
             using (var http = new HttpClient()) {
-                var headers = _options.HeaderRetriever(_options.SmsApiUrl);
+                var headers = _options.HeaderRetriever(_options.AppPushApiUrl);
                 foreach (var item in headers) {
                     http.DefaultRequestHeaders.Add(item.Item1, item.Item2);
                 }
